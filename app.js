@@ -1,5 +1,9 @@
-const express = require('express');
 const path = require('node:path');
+const express = require('express');
+const homeRouter = require('./routes/home');
+const loginRouter = require('./routes/login');
+const registerRouter = require('./routes/register');
+const logoutRouter = require('./routes/logout');
 const passportConfig = require('./utils/passportConfig');
 
 // Setup
@@ -13,21 +17,10 @@ passportConfig();
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
-app.get('/', (req, res) => {
-	res.status(200).render('index');
-});
-app.get('/login', (req, res) => {
-	res.status(200).render('login');
-});
-app.post('/login', (req, res) => {
-	res.send(`POST /Login route hit with data: ${JSON.stringify(req.body)}`);
-});
-app.get('/register', (req, res) => {
-	res.status(200).render('register');
-});
-app.post('/register', (req, res) => {
-	res.send(`POST /Register route hit with data: ${JSON.stringify(req.body)}`);
-});
+app.use('/', homeRouter);
+app.use('/login', loginRouter);
+app.use('/register', registerRouter);
+app.use('/logout', logoutRouter);
 app.get('/*', (req, res) => {
 	res.status(404).render('404');
 });
