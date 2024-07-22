@@ -1,18 +1,18 @@
 const express = require('express');
 const path = require('node:path');
+const passportConfig = require('./utils/passportConfig');
 
-const PORT = process.env.PORT || 3000;
-
+// Setup
 const app = express();
-
-// Directories setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
+passportConfig();
 
 // Middlewares
 app.use(express.urlencoded({ extended: true }));
 
+// Routes
 app.get('/', (req, res) => {
 	res.status(200).render('index');
 });
@@ -32,6 +32,8 @@ app.get('/*', (req, res) => {
 	res.status(404).render('404');
 });
 
+// Server initialization
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
 	console.log(`Server running, listening port ${PORT}`);
 });
