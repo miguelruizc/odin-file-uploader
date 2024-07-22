@@ -5,6 +5,30 @@
 		<%- include('partials/nav') %>
 		<main>
 			<h1>Log In</h1>
+			<form action="/login" method="POST">
+				<div>
+					<label for="username">Username</label>
+					<input
+						type="text"
+						name="username"
+						pattern="^[a-zA-Z0-9]+$*"
+						title="Special characters and spaces are not allowed."
+						required
+					/>
+				</div>
+				<div>
+					<label for="password">Password</label>
+					<input
+						type="password"
+						name="password"
+						pattern="^[a-zA-Z0-9]+$"
+						title="Special characters and spaces are not allowed."
+						required
+					/>
+				</div>
+				<button type="submit">Log In</button>
+			</form>
+			<p>Don't have an account? <a href="/register">Register</a></p>
 		</main>
 	</body>
 </html>
