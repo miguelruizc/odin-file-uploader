@@ -1,6 +1,6 @@
 const { body } = require('express-validator');
 
-const getCredentialsValidators = () => {
+const credentialsValidators = () => {
 	const rules = [
 		body('username')
 			.notEmpty()
@@ -19,4 +19,4 @@ const getCredentialsValidators = () => {
 	return rules;
 };
 
-module.exports = getCredentialsValidators;
+module.exports = credentialsValidators;
