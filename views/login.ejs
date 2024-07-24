@@ -11,9 +11,9 @@
 					<input 
 						type="text" 
 						name="username" 
-						<%/* pattern="^[a-zA-Z0-9]+$" */%> 
-						<%/* title="Special characters and spaces are not allowed." */%> 
-						<%/* required */%> 
+						pattern="^[a-zA-Z0-9]+$" 
+						title="Special characters and spaces are not allowed."
+						required 
 					/>
 				</div>
 				<div>
@@ -21,13 +21,20 @@
 					<input
 						type="password"
 						name="password"
-						<%/* pattern="^[a-zA-Z0-9]+$" */%>
-						<%/* title="Special characters and spaces are not allowed." */%>
-						<%/* required */%>
+						pattern="^[a-zA-Z0-9]+$"
+						title="Special characters and spaces are not allowed."
+						required
 					/>
 				</div>
 				<button type="submit">Log In</button>
 			</form>
+			<% if(typeof errors !== 'undefined' && errors.length > 0) { %>
+				<ul>
+				<% errors.forEach(error => { %>
+					<li style="color: red"><%= error %></li>						
+				<% }); %>
+				</ul>
+			<% } %>
 			<p>Don't have an account? <a href="/register">Register</a></p>
 		</main>
 	</body>

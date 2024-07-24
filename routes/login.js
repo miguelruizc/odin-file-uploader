@@ -4,13 +4,26 @@ const getCredentialsValidators = require('../utils/validation');
 const { validationResult } = require('express-validator');
 
 router.get('/', (req, res) => {
-	res.status(200).render('login');
+	const errors = req.query.errors ? req.query.errors.split(',') : undefined;
+
+	if (errors) res.status(401).render('login', { errors });
+	else res.status(200).render('login');
 });
 router.post('/', getCredentialsValidators(), (req, res) => {
-	const errors = validationResult(req).errors;
-	console.log(errors);
-	// TODO: Add validation to register route
-	res.send(`POST /Login route hit with data: ${JSON.stringify(req.body)}`);
+	let errors = validationResult(req)
+		.array()
+		.map((error) => error.msg);
+
+	if (errors.length > 0) {
+		errors = [...new Set(errors)];
+		const queryString = errors
+			.map((error) => encodeURIComponent(error))
+			.join(',');
+		res.redirect(`/login?errors=${queryString}`);
+	} else {
+		res.send('Validation of the input was successful!');
+		// TODO Login user
+	}
 });
 
 module.exports = router;
