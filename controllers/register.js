@@ -1,5 +1,6 @@
 const { validationResult } = require('express-validator');
 const { PrismaClient } = require('@prisma/client');
+const passport = require('passport');
 const bcrypt = require('bcryptjs');
 const HASH_SALT = 10;
 
@@ -34,9 +35,7 @@ const POST_register = async (req, res) => {
 		});
 		if (user) {
 			return res.redirect(
-				`/register?errors=${encodeURIComponent(
-					'Usename already exists'
-				)}`
+				`/register?errors=${encodeURIComponent('Usename already exists')}`
 			);
 		} else {
 			// Add user to database
@@ -50,8 +49,11 @@ const POST_register = async (req, res) => {
 						},
 					});
 					console.log('Added user successfully:\n', addedUser);
-					return res.redirect('/');
-					// TODO: Login user
+					// Log in user
+					req.logIn(addedUser, (err) => {
+						if (err) return next(err);
+						return res.redirect('/');
+					});
 				} catch (err) {
 					console.log(
 						'Something went wrong adding new user to database: ',
