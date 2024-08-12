@@ -3,16 +3,15 @@
 		<a href="/">FileUploader</a>
 	</div>
 	<ul> 
+	<% if(!isAuthenticated) { %>
 		<li><a href="/login">Log In</a></li>
 		<li><a href="/register">Register</a></li>
+	<% } else { %>
+		<div>
+			User: <%= user.username %>
+		</div>
 		<li><a href="/logout">Logout</a></li>
-
-		<li><a href="/404">404</a></li>
-	</ul>
-	<% if(isAuthenticated) {%>
-	<div>
-		User: <%= user.username %>
-	</div>
 	<% } %>
+	</ul>
 </nav> 
 <hr />
