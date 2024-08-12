@@ -2,6 +2,7 @@ const { validationResult } = require('express-validator');
 const passport = require('passport');
 
 const GET_login = (req, res) => {
+	if (req.isAuthenticated()) return res.redirect('/');
 	const errors = req.query.errors ? req.query.errors.split(',') : undefined;
 
 	if (errors) res.status(401).render('login', { errors });

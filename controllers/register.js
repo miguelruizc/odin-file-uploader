@@ -7,6 +7,7 @@ const HASH_SALT = 10;
 const prisma = new PrismaClient();
 
 const GET_register = (req, res) => {
+	if (req.isAuthenticated()) return res.redirect('/');
 	const errors = req.query.errors ? req.query.errors.split(',') : undefined;
 
 	if (errors) return res.status(401).render('register', { errors });
