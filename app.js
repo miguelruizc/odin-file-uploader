@@ -7,6 +7,7 @@ const logoutRouter = require('./routes/logout');
 const passportConfig = require('./utils/passportConfig');
 const session = require('express-session');
 const passport = require('passport');
+const setUserLocals = require('./utils/setUserLocals');
 
 // Setup
 const app = express();
@@ -26,17 +27,13 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(setUserLocals);
 
 // Routes
 app.use('/', homeRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/logout', logoutRouter);
-app.get('/private', (req, res, next) => {
-	if (req.isAuthenticated()) {
-		return res.render('privateTest', { user: req.user.username });
-	} else return res.render('privateTest', { user: 'No user loged in' });
-});
 app.get('/*', (req, res) => {
 	res.status(404).render('404');
 });

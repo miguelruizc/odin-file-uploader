@@ -2,13 +2,17 @@
 	<div id="logo">
 		<a href="/">FileUploader</a>
 	</div>
-	<ul>
+	<ul> 
 		<li><a href="/login">Log In</a></li>
 		<li><a href="/register">Register</a></li>
 		<li><a href="/logout">Logout</a></li>
 
 		<li><a href="/404">404</a></li>
-		<li><a href="/private">Private</a></li>
 	</ul>
-</nav>
+	<% if(isAuthenticated) {%>
+	<div>
+		User: <%= user.username %>
+	</div>
+	<% } %>
+</nav> 
 <hr />
