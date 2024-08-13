@@ -9,6 +9,7 @@ router.post('/', folderNameValidator(), (req, res) => {
 		.map((error) => error.msg);
 
 	if (errors.length > 0) {
+		console.log('Errors in /addFolder POST request: ');
 		console.log(errors);
 		return res.redirect('/invalidFolderName');
 		// TODO: decide if reload form and show errors or just redirect to '/'

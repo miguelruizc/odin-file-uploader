@@ -11,7 +11,7 @@
 				<button id="uploadFileButton">Upload file</button>
 				<form id="uploadFileForm" class="hidden" action="/upload" method="POST" enctype="multipart/form-data">
 					<label for="file">File: </label>
-					<input type="file" name="file" />
+					<input type="file" name="file" required/>
 					<label for="folder">Folder: </label>
 					<select>
 						<option value="">Root folder</option>
@@ -26,6 +26,7 @@
 						name="folderName" 
 						pattern = "^[a-zA-Z0-9]+(?: [a-zA-Z0-9]+)*$"
 						title="Special characters are not allowed. Spaces are only allowed in between words."
+						placeholder="Enter folder name..."
 						required 
 					/>
 					<button type="submit">Add folder</button>

@@ -26,8 +26,10 @@ const folderNameValidator = () => {
 			.notEmpty()
 			.withMessage('Folder name field must be filled')
 			.bail()
-			.matches(/^[a-zA-Z0-9 ]+$/)
-			.withMessage('Special characters are not allowed.'),
+			.matches(/^[a-zA-Z0-9]+(?: [a-zA-Z0-9]+)*$/)
+			.withMessage(
+				'Special characters are not allowed. Spaces are only allowed in between words.'
+			),
 	];
 
 	return rules;
