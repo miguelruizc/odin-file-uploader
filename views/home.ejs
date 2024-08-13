@@ -7,9 +7,23 @@
 			<% if(isAuthenticated) { %>
 			<h1>Welcome, <%= user.username %></h1>
 			<div class="upload">
-				<form action="/upload" method="POST" enctype="multipart/form-data">
+				<button id="addFolderButton">Add folder</button>
+				<button id="uploadFileButton">Upload file</button>
+				<form id="uploadFileForm" class="hidden" action="/upload" method="POST" enctype="multipart/form-data">
+					<label for="file">File: </label>
 					<input type="file" name="file" />
+					<label for="folder">Folder: </label>
+					<select>
+						<option value="">Root folder</option>
+					</select>
 					<button type="submit">Upload</button>
+					<button type="button" id="uploadFileFormCancel">Cancel</button>
+				</form>
+				<form id="addFolderForm" class="hidden" action="/upload" method="POST" enctype="multipart/form-data">
+					<label for="folderName">Folder name: </label>
+					<input type="text" name="folderName" />
+					<button type="submit">Add folder</button>
+					<button type="button" id="addFolderFormCancel">Cancel</button>
 				</form>
 			</div>
 			<div class="files">
@@ -22,5 +36,36 @@
 			<h1>Login to upload files</h1>
 			<% } %>
 		</main>
+
+		<script>
+			const uploadButton = document.getElementById('uploadFileButton');
+			uploadButton.addEventListener('click', () => {
+				document.getElementById('uploadFileForm').classList.toggle('hidden');
+				document.getElementById('uploadFileButton').classList.toggle('hidden');
+				document.getElementById('addFolderButton').classList.toggle('hidden');
+			});
+
+			const uploadFileFormCancel = document.getElementById('uploadFileFormCancel');
+			uploadFileFormCancel.addEventListener('click', ()=>{
+				document.getElementById('uploadFileForm').classList.toggle('hidden');
+				document.getElementById('uploadFileButton').classList.toggle('hidden');
+				document.getElementById('addFolderButton').classList.toggle('hidden');
+			});
+
+			const addFolderButton = document.getElementById('addFolderButton');
+			addFolderButton.addEventListener('click', ()=>{
+				document.getElementById('addFolderForm').classList.toggle('hidden');
+				document.getElementById('addFolderButton').classList.toggle('hidden');
+				document.getElementById('uploadFileButton').classList.toggle('hidden');
+			});
+
+			const addFolderFormCancel = document.getElementById('addFolderFormCancel');
+			addFolderFormCancel.addEventListener('click', ()=> {
+				document.getElementById('addFolderForm').classList.toggle('hidden');
+				document.getElementById('uploadFileButton').classList.toggle('hidden');
+				document.getElementById('addFolderButton').classList.toggle('hidden');
+			});
+
+		</script>
 	</body>
 </html>
