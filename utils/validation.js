@@ -19,4 +19,18 @@ const credentialsValidators = () => {
 	return rules;
 };
 
-module.exports = credentialsValidators;
+const folderNameValidator = () => {
+	const rules = [
+		body('folderName')
+			.trim()
+			.notEmpty()
+			.withMessage('Folder name field must be filled')
+			.bail()
+			.matches(/^[a-zA-Z0-9 ]+$/)
+			.withMessage('Special characters are not allowed.'),
+	];
+
+	return rules;
+};
+
+module.exports = { credentialsValidators, folderNameValidator };

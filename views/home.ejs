@@ -19,12 +19,21 @@
 					<button type="submit">Upload</button>
 					<button type="button" id="uploadFileFormCancel">Cancel</button>
 				</form>
-				<form id="addFolderForm" class="hidden" action="/upload" method="POST" enctype="multipart/form-data">
+				<form id="addFolderForm" class="hidden" action="/addfolder" method="POST">
 					<label for="folderName">Folder name: </label>
-					<input type="text" name="folderName" />
+					<input 
+						type="text" 
+						name="folderName" 
+						pattern = "^[a-zA-Z0-9]+(?: [a-zA-Z0-9]+)*$"
+						title="Special characters are not allowed. Spaces are only allowed in between words."
+						required 
+					/>
 					<button type="submit">Add folder</button>
 					<button type="button" id="addFolderFormCancel">Cancel</button>
 				</form>
+				<div class="formErrors">
+					
+				</div>
 			</div>
 			<div class="files">
 				<h2>Your files</h2>
