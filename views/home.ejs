@@ -14,7 +14,12 @@
 					<input type="file" name="file" required/>
 					<label for="folder">Folder: </label>
 					<select>
-						<option value="">No folder</option>
+						<% if(folders && folders.length > 0) { %>
+							<% folders.forEach(folder => { %>
+								<option value="<%= folder.id %>"><%= folder.name %></option>
+							<% })%>
+						<% } %>
+						<option value="null">No folder</option>
 					</select>
 					<button type="submit">Upload</button>
 					<button type="button" id="uploadFileFormCancel">Cancel</button>
