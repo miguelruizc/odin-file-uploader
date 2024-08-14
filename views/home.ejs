@@ -38,8 +38,19 @@
 			</div>
 			<div class="files">
 				<h2>Your files</h2>
-				<% if(!files || files.length < 1) { %>
+				<% if((!files || files.length < 1) && (!folders || folders.length < 1)) { %>
 					<p>This is empty...</p>
+				<% } else { %>
+					<ul>
+						<% folders.forEach(folder => { %>
+							<li>Folder: <%= folder.name %></li>
+						<% }) %>
+					</ul>
+					<ul>
+						<% files.forEach(file => { %>
+							<li>File: <%= file.name %></li>
+						<% }) %>
+					</ul>
 				<% } %>
 			</div>
 			<% } else { %>

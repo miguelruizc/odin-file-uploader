@@ -1,7 +1,27 @@
-const setUserLocals = (req, res, next) => {
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
+
+const setUserLocals = async (req, res, next) => {
 	res.locals.user = req.user;
 	res.locals.isAuthenticated = req.isAuthenticated();
+	res.locals.folders = null;
 	res.locals.files = null;
+
+	if (req.isAuthenticated()) {
+		const user = await prisma.user.findUnique({
+			where: {
+				id: req.user.id,
+			},
+			include: {
+				folders: true,
+				files: true,
+			},
+		});
+
+		res.locals.folders = user.folders;
+		res.locals.files = user.files;
+	}
+
 	next();
 };
 
