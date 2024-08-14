@@ -9,11 +9,12 @@
 			<div class="upload">
 				<button id="addFolderButton">Add folder</button>
 				<button id="uploadFileButton">Upload file</button>
+				<!-- UPLOAD FORM -->
 				<form id="uploadFileForm" class="hidden" action="/upload" method="POST" enctype="multipart/form-data">
 					<label for="file">File: </label>
 					<input type="file" name="file" required/>
 					<label for="folder">Folder: </label>
-					<select>
+					<select name="folder" required>
 						<% if(folders && folders.length > 0) { %>
 							<% folders.forEach(folder => { %>
 								<option value="<%= folder.id %>"><%= folder.name %></option>
@@ -24,6 +25,8 @@
 					<button type="submit">Upload</button>
 					<button type="button" id="uploadFileFormCancel">Cancel</button>
 				</form>
+
+				<!-- ADD FOLDER FORM -->
 				<form id="addFolderForm" class="hidden" action="/addfolder" method="POST">
 					<label for="folderName">Folder name: </label>
 					<input 
