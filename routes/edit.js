@@ -8,17 +8,20 @@ const prisma = new PrismaClient();
 
 const POST_edit_folder = async (req, res) => {
 	if (!req.isAuthenticated()) return res.redirect('/login');
-	const validationErrors = validationResult(req)
+
+	// From input validation/sanitization
+	let errors = validationResult(req)
 		.array()
 		.map((error) => error.msg);
-	if (validationErrors.length > 0) {
-		// TODO:
-		// create query string with errors
-		// redirect to /error?listoferrors
-		console.log('Folder name validation errors: ', validationErrors);
-		res.redirect('/');
+	if (errors.length > 0) {
+		errors = [...new Set(errors)];
+		const queryString = errors
+			.map((error) => encodeURIComponent(error))
+			.join(',');
+		return res.redirect(`/error?errors=${queryString}`);
 	}
 
+	// Request data
 	const folderId = parseInt(req.params.id);
 	const newFolderName = req.body.folderName;
 	const userId = req.user.id;
