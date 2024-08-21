@@ -49,11 +49,6 @@ form div {
 	display: none;
 }
 
-.folderCard,
-.fileCard {
-	cursor: pointer;
-}
-
 .deleteBtn {
 	width: 50px;
 }

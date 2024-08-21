@@ -78,9 +78,14 @@
 					<ul>
 						<% files.forEach(file => { %>
 							<li class="fileCard">
-								<a href="/download/<%= file.name %>" download>
-									File: <%= file.name %>
-								</a>
+								File: <%= file.name %>
+								<button class="showDetailsBtn">+</button>
+								<div class="cardDetails hidden">
+									<form action="/delete/file/<%= file.id %>" method="POST">
+										<button class="deleteBtn" type="submit">delete</button>
+									</form>
+									<a href="/download/<%= file.name %>" download><button class="downloadBtn">download</button></a>
+								</div>
 							</li>
 						<% }) %>
 					</ul>
@@ -133,6 +138,15 @@
 					event.stopPropagation();
 					const editForm = card.querySelector('.editForm');
 					editForm.classList.toggle('hidden');
+				});
+			});
+
+			const fileCards = document.querySelectorAll('.fileCard').forEach(card => {
+				const showDetailsBtn = card.querySelector('.showDetailsBtn');
+				showDetailsBtn.addEventListener('click', (event) => {
+					event.stopPropagation();
+					const details = card.querySelector('.cardDetails');
+					details.classList.toggle('hidden');
 				});
 			});
 

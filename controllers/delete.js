@@ -39,7 +39,7 @@ const POST_delete_folder = async (req, res) => {
 };
 
 const POST_delete_file = (req, res) => {
-	console.log('POST request received in /delete/folder/:id');
+	console.log('POST request received in /delete/file/:id');
 	res.redirect('/');
 };
 
