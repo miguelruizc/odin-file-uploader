@@ -15,9 +15,6 @@ const POST_addFolder = async (req, res) => {
 		}
 
 		// If form sanitization is valid:
-		console.log('POST request to /addFolder with data: ');
-		console.log('FolderName: ', req.body.folderName);
-		console.log('User: ', req.user);
 		try {
 			const folder = await prisma.folder.create({
 				data: {
