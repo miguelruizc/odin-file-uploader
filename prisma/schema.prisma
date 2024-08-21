@@ -33,6 +33,7 @@ model Folder {
 model File {
   id       Int     @id @default(autoincrement())
   name     String  @unique
+  alias    String
   folder   Folder? @relation(fields: [folderId], references: [id])
   folderId Int?
   user     User    @relation(fields: [userId], references: [id])
