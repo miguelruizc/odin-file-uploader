@@ -9,6 +9,7 @@ const addFolderRouter = require('./routes/addFolder');
 const downloadRouter = require('./routes/download');
 const editRouter = require('./routes/edit');
 const errorRouter = require('./routes/error');
+const deleteRouter = require('./routes/delete');
 const passportConfig = require('./utils/passportConfig');
 const session = require('express-session');
 const passport = require('passport');
@@ -43,6 +44,7 @@ app.use('/upload', uploadRouter);
 app.use('/addfolder', addFolderRouter);
 app.use('/download', downloadRouter);
 app.use('/edit', editRouter);
+app.use('/delete', deleteRouter);
 app.use('/error', errorRouter);
 app.get('/*', (req, res) => {
 	res.status(404).render('404');

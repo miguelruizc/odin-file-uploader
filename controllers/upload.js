@@ -3,6 +3,9 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 const POST_upload = async (req, res) => {
+	// check if user is authenticated
+	if (!req.isAuthenticated()) return res.redirect('/login');
+
 	const file = req.file;
 	let folderId = isNaN(parseInt(req.body.folder))
 		? null
