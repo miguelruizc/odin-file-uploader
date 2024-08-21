@@ -51,12 +51,28 @@
 				<% } else { %>
 					<ul>
 						<% folders.forEach(folder => { %>
-							<li>Folder: <%= folder.name %></li>
+							<li class="folderCard">
+								Folder: <%= folder.name %>
+								<button class="showDetailsBtn">+</button>
+								<div class="cardDetails hidden">
+									<button class="deleteBtn">delete</button>
+									<button class="editBtn">edit</button>
+									<form action="/edit/folder/<%= folder.id %>" method="POST" class="editForm hidden">
+										<label for="folderName">New name: </label>
+										<input type="text" name="folderName">
+										<button type="submit">Submit</button>
+									</form>
+								</div>
+							</li>
 						<% }) %>
 					</ul>
 					<ul>
 						<% files.forEach(file => { %>
-							<a href="<%= file.path %>"><li>File: <%= file.name %></li></a>
+							<li class="fileCard">
+								<a href="/download/<%= file.name %>" download>
+									File: <%= file.name %>
+								</a>
+							</li>
 						<% }) %>
 					</ul>
 				<% } %>
@@ -93,6 +109,22 @@
 				document.getElementById('addFolderForm').classList.toggle('hidden');
 				document.getElementById('uploadFileButton').classList.toggle('hidden');
 				document.getElementById('addFolderButton').classList.toggle('hidden');
+			});
+
+			const folderCards = document.querySelectorAll('.folderCard').forEach(card => {
+				const showDetailsBtn = card.querySelector('.showDetailsBtn');
+				showDetailsBtn.addEventListener('click', (event) => {
+					event.stopPropagation();
+					const details = card.querySelector('.cardDetails');
+					details.classList.toggle('hidden');
+				});
+
+				const editBtn = card.querySelector('.editBtn');
+				editBtn.addEventListener('click', (event) => {
+					event.stopPropagation();
+					const editForm = card.querySelector('.editForm');
+					editForm.classList.toggle('hidden');
+				});
 			});
 
 		</script>

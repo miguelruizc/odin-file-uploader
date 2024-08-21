@@ -30,11 +30,7 @@ router.post('/', upload.single('file'), async (req, res) => {
 	// Add entry to DB
 	if (req.isAuthenticated()) {
 		try {
-			const filepath = path.join(
-				path.resolve(__dirname, '../'),
-				'uploads',
-				req.file.filename
-			);
+			const filepath = path.join(process.cwd(), 'uploads', req.file.filename);
 			const addedFile = await prisma.file.create({
 				data: {
 					name: req.file.filename,

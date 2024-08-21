@@ -48,3 +48,8 @@ form div {
 .hidden {
 	display: none;
 }
+
+.folderCard,
+.fileCard {
+	cursor: pointer;
+}
