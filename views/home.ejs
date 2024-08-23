@@ -78,7 +78,7 @@
 					<ul>
 						<% files.forEach(file => { %>
 							<li class="fileCard">
-								File: <%= file.alias %>
+								File: <%= file.name %>
 								<button class="showDetailsBtn">+</button>
 								<div class="cardDetails hidden">
 									<form action="/delete/file/<%= file.id %>" method="POST">
