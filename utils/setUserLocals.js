@@ -13,8 +13,8 @@ const setUserLocals = async (req, res, next) => {
 				id: req.user.id,
 			},
 			include: {
-				folders: true,
-				files: true,
+				folders: { orderBy: { id: 'asc' } },
+				files: { orderBy: { id: 'asc' } },
 			},
 		});
 

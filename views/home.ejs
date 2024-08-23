@@ -49,46 +49,30 @@
 				<% if((!files || files.length < 1) && (!folders || folders.length < 1)) { %>
 					<p>This is empty...</p>
 				<% } else { %>
-					<ul>
-						<% folders.forEach(folder => { %>
-							<li class="folderCard">
-								Folder: <%= folder.name %>
-								<button class="showDetailsBtn">+</button>
-								<div class="cardDetails hidden">
-									<form action="/delete/folder/<%= folder.id %>" method="POST">
-										<button class="deleteBtn" type="submit">delete</button>
-									</form>
-									<button class="editBtn">edit</button>
-									<form action="/edit/folder/<%= folder.id %>" method="POST" class="editForm hidden">
-										<label for="folderName">New name: </label>
-										<input 
-											type="text" 
-											name="folderName" 
-											pattern = "^[a-zA-Z0-9]+(?: [a-zA-Z0-9]+)*$"
-											title="Special characters are not allowed. Spaces are only allowed in between words."
-											placeholder="Enter new folder name..."
-											required 
-										/>
-										<button type="submit">Submit</button>
-									</form>
-								</div>
-							</li>
-						<% }) %>
-					</ul>
-					<ul>
-						<% files.forEach(file => { %>
-							<li class="fileCard">
-								File: <%= file.name %>
-								<button class="showDetailsBtn">+</button>
-								<div class="cardDetails hidden">
-									<form action="/delete/file/<%= file.id %>" method="POST">
-										<button class="deleteBtn" type="submit">delete</button>
-									</form>
-									<a href="/download/<%= file.name %>" download><button class="downloadBtn">download</button></a>
-								</div>
-							</li>
-						<% }) %>
-					</ul>
+					<!-- Show each folder with each file -->
+					<% folders.forEach(folder => { %>
+						<div class="folderCard">
+							🗀: <%= folder.name %>
+							<%- include('partials/folderShowDetails', {folder}) %>
+							<% files.forEach(file => { %>
+								<% if(file.folderId === folder.id) { %>
+									<div class="fileCard">
+										\  ->🗎: <%= file.name %>
+										<%- include('partials/fileShowDetails', {file}) %>
+									</div>
+								<% } %>
+							<% }) %>
+						</div>						
+					<% }) %>
+					<!-- Show each standalone file -->
+					<% files.forEach(file => { %>
+						<% if(file.folderId === null) { %>
+							<div class="fileCard">
+								🗎: <%= file.name %>
+								<%- include('partials/fileShowDetails', {file}) %>
+							</div>
+						<% } %>
+					<% }) %>
 				<% } %>
 			</div>
 			<% } else { %>

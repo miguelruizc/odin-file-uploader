@@ -1,0 +1,19 @@
+<button class="showDetailsBtn">+</button>
+<div class="cardDetails hidden">
+    <form action="/delete/folder/<%= folder.id %>" method="POST">
+        <button class="deleteBtn" type="submit">delete</button>
+    </form>
+    <button class="editBtn">edit</button>
+    <form action="/edit/folder/<%= folder.id %>" method="POST" class="editForm hidden">
+        <label for="folderName">New name: </label>
+        <input 
+            type="text" 
+            name="folderName" 
+            pattern = "^[a-zA-Z0-9]+(?: [a-zA-Z0-9]+)*$"
+            title="Special characters are not allowed. Spaces are only allowed in between words."
+            placeholder="Enter new folder name..."
+            required 
+        />
+        <button type="submit">Submit</button>
+    </form>
+</div>

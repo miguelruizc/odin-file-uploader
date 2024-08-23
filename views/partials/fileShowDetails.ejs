@@ -1,0 +1,7 @@
+<button class="showDetailsBtn">+</button>
+<div class="cardDetails hidden">
+    <form action="/delete/file/<%= file.id %>" method="POST">
+        <button class="deleteBtn" type="submit">delete</button>
+    </form>
+    <a href="/download/<%= file.uniqueName %>" download><button class="downloadBtn">download</button></a>
+</div>
