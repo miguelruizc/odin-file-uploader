@@ -10,10 +10,10 @@ const downloadRouter = require('./routes/download');
 const editRouter = require('./routes/edit');
 const errorRouter = require('./routes/error');
 const deleteRouter = require('./routes/delete');
-const passportConfig = require('./utils/passportConfig');
+const passportConfig = require('./misc/passportConfig');
 const session = require('express-session');
 const passport = require('passport');
-const setUserLocals = require('./utils/setUserLocals');
+const setUserLocals = require('./misc/setUserLocals');
 
 // Setup
 const app = express();

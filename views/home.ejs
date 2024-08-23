@@ -11,8 +11,8 @@
 				<button id="uploadFileButton">Upload file</button>
 				<!-- UPLOAD FORM -->
 				<form id="uploadFileForm" class="hidden" action="/upload" method="POST" enctype="multipart/form-data">
-					<label for="file">File: </label>
-					<input type="file" name="file" required/>
+					<label for="file">File (size limit: 5MB): </label>
+					<input type="file" name="file" required accept=".jpg, .jpeg, .png, .gif, .bmp, .svg, .pdf, .doc, .docx, .ppt, .pptx, .txt, .rtf, .zip, .rar, .7z, .mp3, .wav, .mp4, .mov, .avi, .csv, .json, .xml">
 					<label for="folder">Folder: </label>
 					<select name="folder" required>
 						<% if(folders && folders.length > 0) { %>
@@ -132,6 +132,66 @@
 					const details = card.querySelector('.cardDetails');
 					details.classList.toggle('hidden');
 				});
+			});
+
+			const uploadForm = document.getElementById('uploadFileForm');
+			uploadForm.addEventListener('submit', function(event) {
+				const fileInput = document.querySelector('#uploadFileForm input');
+				const file = fileInput.files[0];
+
+				if(file) {
+					// Validate file type
+					const allowedMimeTypes = [
+						// Images
+						'image/jpeg',
+						'image/png',
+						'image/gif',
+						'image/bmp',
+						'image/svg+xml',
+						// Documents
+						'application/pdf',
+						'application/msword',
+						'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+						'application/vnd.ms-powerpoint',
+						'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+						'text/plain',
+						'application/rtf',
+						// Compressed
+						'application/zip',
+						'application/vnd.rar',
+						'application/x-7z-compressed',
+						// Audio/Video
+						'audio/mpeg',
+						'audio/wav',
+						'video/mp4',
+						'video/quicktime',
+						'video/x-msvideo',
+						// Text Files
+						'text/csv',
+						'application/json',
+						'application/xml',
+						'text/xml',
+					];
+					if(!allowedMimeTypes.includes(file.type)) {
+						fileInput.setCustomValidity('Invalid file type.');
+						fileInput.reportValidity();
+						event.preventDefault();
+						return;
+					} 
+
+					// Validate file size
+					const maxSize = 5 * 1024 * 1024; // 5MB
+					if(file.size > maxSize) {
+						fileInput.setCustomValidity('File size exceeds 5MB');
+						fileInput.reportValidity();
+						event.preventDefault();
+						return;
+					}
+				}
+			});
+			// Reset custom error message in file upload form
+			document.querySelector('#uploadFileForm input').addEventListener('change', function(){
+				this.setCustomValidity('');
 			});
 
 		</script>
