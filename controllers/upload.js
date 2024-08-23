@@ -44,6 +44,7 @@ const POST_upload = async (req, res) => {
 						},
 					}),
 					path: filepath,
+					size: req.file.size,
 				},
 			});
 			console.log('File uploaded and entry added to DB:\n', addedFile);
