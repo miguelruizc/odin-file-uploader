@@ -39,7 +39,7 @@ const storage = multer.diskStorage({
 	},
 	filename: (req, file, cb) => {
 		const timestamp = Date.now();
-		const filename = file.originalname.replace(/[^a-zA-Z0-9.]/g, '_'); // Sanitize
+		const filename = file.originalname.replace(/[^a-zA-Z0-9.-]/g, '_'); // Sanitize
 		const ext = path.extname(filename);
 		const completeName = `${path.basename(filename, ext)}-${timestamp}${ext}`;
 

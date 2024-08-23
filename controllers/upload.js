@@ -33,7 +33,7 @@ const POST_upload = async (req, res) => {
 			const filepath = path.join(process.cwd(), 'uploads', req.file.filename);
 			const addedFile = await prisma.file.create({
 				data: {
-					name: req.file.originalname,
+					name: req.file.originalname.replace(/[^a-zA-Z0-9.-]/g, '_'),
 					uniqueName: req.file.filename,
 					user: {
 						connect: { id: req.user.id },

@@ -14,6 +14,7 @@ const passportConfig = require('./misc/passportConfig');
 const session = require('express-session');
 const passport = require('passport');
 const setUserLocals = require('./misc/setUserLocals');
+const { errorHandler } = require('./misc/errorHandler');
 
 // Setup
 const app = express();
@@ -49,6 +50,9 @@ app.use('/error', errorRouter);
 app.get('/*', (req, res) => {
 	res.status(404).render('404');
 });
+
+// Error handler middleware
+app.use(errorHandler);
 
 // Server initialization
 const PORT = process.env.PORT || 3000;
