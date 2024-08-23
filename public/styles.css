@@ -1,10 +1,34 @@
 * {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+nav {
+	padding: 16px;
+	background-color: rgb(67, 67, 255);
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	font-size: 1.2rem;
 }
 
-nav {
+nav #logo {
+	font-weight: bold;
+	font-size: 2rem;
+}
+
+nav > div {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	width: 600px;
 }
 
 nav ul {
@@ -15,17 +39,22 @@ nav ul {
 	gap: 25px;
 }
 
-a {
-	text-decoration-line: none;
-}
-a:visited {
-	color: blue;
+nav ul div {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
+a {
+	text-decoration: none;
+	color: inherit;
+}
 main {
+	padding: 16px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	gap: 16px;
 }
 
 form {
@@ -42,13 +71,47 @@ form div {
 .upload {
 	box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
 	padding: 32px;
-	width: 500px;
+	width: 600px;
 }
 
 .hidden {
 	display: none;
 }
 
-.deleteBtn {
-	width: 50px;
+.deleteBtn,
+.editBtn,
+.downloadBtn {
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+}
+
+.upload {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 8px;
+}
+
+form button,
+form select {
+	width: 100%;
+}
+
+form input {
+	border: 1px solid grey;
+}
+
+form > div {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 0px;
 }

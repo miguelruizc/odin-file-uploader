@@ -1,17 +1,16 @@
 <nav>
-	<div id="logo">
-		<a href="/">FileUploader</a>
-	</div>
-	<ul> 
-	<% if(!isAuthenticated) { %>
-		<li><a href="/login">Log In</a></li>
-		<li><a href="/register">Register</a></li>
-	<% } else { %>
-		<div>
-			User: <%= user.username %>
+	<div>
+		<div id="logo">
+			<a href="/">FileUploader</a>
 		</div>
-		<li><a href="/logout">Logout</a></li>
-	<% } %>
-	</ul>
+		<ul>
+		<% if(!isAuthenticated) { %>
+			<li><a href="/login">Log In</a></li>
+			<li><a href="/register">Register</a></li>
+		<% } else { %>
+			<li>👽<%= user.username %> | <a href="/logout">Quit</a></li>
+		<% } %>
+		</ul>
+	</div>
 </nav> 
 <hr />

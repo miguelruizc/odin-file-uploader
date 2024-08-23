@@ -1,9 +1,9 @@
 <button class="showDetailsBtn">+</button>
 <div class="cardDetails hidden">
     <form action="/delete/folder/<%= folder.id %>" method="POST">
-        <button class="deleteBtn" type="submit">delete</button>
+        <button class="deleteBtn" type="submit">🗑</button>
     </form>
-    <button class="editBtn">edit</button>
+    <button class="editBtn">🖉</button>
     <form action="/edit/folder/<%= folder.id %>" method="POST" class="editForm hidden">
         <label for="folderName">New name: </label>
         <input 

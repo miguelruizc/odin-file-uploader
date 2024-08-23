@@ -7,38 +7,48 @@
 			<% if(isAuthenticated) { %>
 			<h1>Welcome, <%= user.username %></h1>
 			<div class="upload">
-				<button id="addFolderButton">Add folder</button>
-				<button id="uploadFileButton">Upload file</button>
+				<button id="addFolderButton">🗀 Add folder</button>
+				<button id="uploadFileButton">⬆️ Upload file</button>
 				<!-- UPLOAD FORM -->
 				<form id="uploadFileForm" class="hidden" action="/upload" method="POST" enctype="multipart/form-data">
-					<label for="file">File (size limit: 5MB): </label>
-					<input type="file" name="file" required accept=".jpg, .jpeg, .png, .gif, .bmp, .svg, .pdf, .doc, .docx, .ppt, .pptx, .txt, .rtf, .zip, .rar, .7z, .mp3, .wav, .mp4, .mov, .avi, .csv, .json, .xml">
-					<label for="folder">Folder: </label>
-					<select name="folder" required>
-						<% if(folders && folders.length > 0) { %>
-							<% folders.forEach(folder => { %>
-								<option value="<%= folder.id %>"><%= folder.name %></option>
-							<% })%>
-						<% } %>
-						<option value="null">No folder</option>
-					</select>
-					<button type="submit">Upload</button>
-					<button type="button" id="uploadFileFormCancel">Cancel</button>
+					<div>
+						<label for="file">File (size limit 5MB): </label>
+						<input type="file" name="file" required accept=".jpg, .jpeg, .png, .gif, .bmp, .svg, .pdf, .doc, .docx, .ppt, .pptx, .txt, .rtf, .zip, .rar, .7z, .mp3, .wav, .mp4, .mov, .avi, .csv, .json, .xml">
+					</div>
+					<div>
+						<label for="folder">Folder: </label>
+						<select name="folder" required>
+							<% if(folders && folders.length > 0) { %>
+								<% folders.forEach(folder => { %>
+									<option value="<%= folder.id %>"><%= folder.name %></option>
+								<% })%>
+							<% } %>
+							<option value="null">No folder</option>
+						</select>
+					</div>
+					<div>
+						<button type="submit">Upload</button>
+						<button type="button" id="uploadFileFormCancel">Cancel</button>
+					</div>
 				</form>
 
 				<!-- ADD FOLDER FORM -->
 				<form id="addFolderForm" class="hidden" action="/addfolder" method="POST">
-					<label for="folderName">Folder name: </label>
-					<input 
-						type="text" 
-						name="folderName" 
-						pattern = "^[a-zA-Z0-9]+(?: [a-zA-Z0-9]+)*$"
-						title="Special characters are not allowed. Spaces are only allowed in between words."
-						placeholder="Enter folder name..."
-						required 
-					/>
-					<button type="submit">Add folder</button>
-					<button type="button" id="addFolderFormCancel">Cancel</button>
+					<div>
+						<label for="folderName">Folder name: </label>
+						<input
+							type="text"
+							name="folderName"
+							pattern = "^[a-zA-Z0-9]+(?: [a-zA-Z0-9]+)*$"
+							title="Special characters are not allowed. Spaces are only allowed in between words."
+							placeholder="Enter folder name..."
+							required
+						/>
+					</div>
+					<div>
+						<button type="submit">Add folder</button>
+						<button type="button" id="addFolderFormCancel">Cancel</button>
+					</div>
 				</form>
 				<div class="formErrors">
 					
@@ -52,12 +62,12 @@
 					<!-- Show each folder with each file -->
 					<% folders.forEach(folder => { %>
 						<div class="folderCard">
-							🗀: <%= folder.name %>
+							🗀 <%= folder.name %>
 							<%- include('partials/folderShowDetails', {folder}) %>
 							<% files.forEach(file => { %>
 								<% if(file.folderId === folder.id) { %>
 									<div class="fileCard">
-										\  ->🗎: <%= file.name %>
+										└🗎 <%= file.name %>
 										<%- include('partials/fileShowDetails', {file}) %>
 									</div>
 								<% } %>
@@ -68,7 +78,7 @@
 					<% files.forEach(file => { %>
 						<% if(file.folderId === null) { %>
 							<div class="fileCard">
-								🗎: <%= file.name %>
+								🗎 <%= file.name %>
 								<%- include('partials/fileShowDetails', {file}) %>
 							</div>
 						<% } %>
