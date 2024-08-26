@@ -146,3 +146,34 @@ form > div {
 .fileCard .cardDetails div {
 	margin-top: 8px;
 }
+
+@media (max-width: 650px) {
+	.files,
+	.upload {
+		width: 90vw;
+	}
+
+	nav > div {
+		width: 90vw;
+	}
+}
+
+@media (max-width: 380px) {
+	nav > div {
+		flex-direction: column;
+	}
+}
+
+@media (max-width: 303px) {
+	.upload,
+	.files,
+	.upload button,
+	.files button {
+		font-size: 0.7rem;
+	}
+
+	#uploadFileForm,
+	#addFolderForm {
+		width: 100%;
+	}
+}
