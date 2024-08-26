@@ -132,4 +132,17 @@ form > div {
 	margin-top: 8px;
 	align-items: flex-start;
 	width: fit-content;
+	margin-bottom: 8px;
+}
+
+.cardDetails {
+	margin-bottom: 8px;
+}
+
+.fileCard .cardDetails {
+	padding-left: 8px;
+}
+
+.fileCard .cardDetails div {
+	margin-top: 8px;
 }

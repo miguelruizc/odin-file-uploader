@@ -1,10 +1,12 @@
 <button class="showDetailsBtn">+</button>
 <div class="cardDetails hidden">
-    <p>Internal unique name: <%= file.uniqueName %></p>
-    <p>Upload date: <%= formatDate(file.uploadedAt) %></p>
-    <p>Size: <%= (file.size / 1024).toFixed(2) %>KB</p>
-    <form action="/delete/file/<%= file.id %>" method="POST">
-        <button class="deleteBtn" type="submit">🗑</button>
-    </form>
-    <a href="/download/<%= file.uniqueName %>" download><button class="downloadBtn">↓</button></a>
+    <p><strong>Database name:</strong> <%= file.uniqueName %></p>
+    <p><strong>Upload date:</strong> <%= formatDate(file.uploadedAt) %></p>
+    <p><strong>Size:</strong> <%= (file.size / 1024).toFixed(2) %>KB</p>
+    <div>
+        <form action="/delete/file/<%= file.id %>" method="POST" class="invisibleForm">
+            <button class="deleteBtn" type="submit">✖ Delete</button>
+        </form>
+        <a href="/download/<%= file.uniqueName %>" download><button class="downloadBtn">↓ Download</button></a>
+    </div>
 </div>

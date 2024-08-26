@@ -125,6 +125,7 @@
 					event.stopPropagation();
 					const details = card.querySelector('.cardDetails');
 					details.classList.toggle('hidden');
+					showDetailsBtn.textContent = showDetailsBtn.textContent === '+' ? '-' : '+';
 				});
 
 				const editBtn = card.querySelector('.editBtn');
@@ -141,6 +142,7 @@
 					event.stopPropagation();
 					const details = card.querySelector('.cardDetails');
 					details.classList.toggle('hidden');
+					showDetailsBtn.textContent = showDetailsBtn.textContent === '+' ? '-' : '+';
 				});
 			});
 
