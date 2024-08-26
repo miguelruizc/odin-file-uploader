@@ -81,14 +81,6 @@ form div {
 	display: none;
 }
 
-.deleteBtn,
-.editBtn,
-.downloadBtn {
-	width: 30px;
-	height: 30px;
-	cursor: pointer;
-}
-
 .upload {
 	display: flex;
 	justify-content: center;
@@ -121,4 +113,23 @@ form > div {
 	display: flex;
 	flex-direction: column;
 	gap: 0px;
+}
+
+.invisibleForm {
+	display: contents;
+}
+
+.invisibleForm button {
+	width: auto;
+}
+
+.cardDetails button {
+	padding-left: 8px;
+	padding-right: 8px;
+}
+
+.cardDetails form {
+	margin-top: 8px;
+	align-items: flex-start;
+	width: fit-content;
 }
