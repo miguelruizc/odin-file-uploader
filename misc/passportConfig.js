@@ -23,7 +23,10 @@ const passportConfig = () => {
 					return done(null, false, { message: 'Invalid credentials' });
 
 				// Username & password are valid:
-				return done(null, { id: user.id, username: user.username });
+				return done(null, {
+					id: user.id,
+					username: user.username,
+				});
 			} catch (error) {
 				return done(error);
 			}

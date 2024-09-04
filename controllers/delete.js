@@ -1,6 +1,7 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 const fs = require('node:fs');
+const { updateUserCapacity } = require('../misc/userCapacity');
 
 const POST_delete_folder = async (req, res) => {
 	// Check if user is authenticated
@@ -39,6 +40,7 @@ const POST_delete_folder = async (req, res) => {
 	});
 	console.log('Deleted folder: ', deletedFolder);
 	console.log('and associated files: ', deletedFiles);
+	await updateUserCapacity(req.user.id);
 
 	// Remove physical files from the server
 	filesToDelete.forEach((file) => {
@@ -84,6 +86,7 @@ const POST_delete_file = async (req, res) => {
 		},
 	});
 	console.log('Deleted file: ', deletedFile);
+	await updateUserCapacity(req.user.id);
 
 	// Remove physical file from the server
 	fs.unlink(deletedFile.path, (error) => {

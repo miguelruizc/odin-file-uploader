@@ -2,7 +2,7 @@
 <div class="cardDetails hidden">
     <p><strong>Database name:</strong> <%= file.uniqueName %></p>
     <p><strong>Upload date:</strong> <%= formatDate(file.uploadedAt) %></p>
-    <p><strong>Size:</strong> <%= (file.size / 1024).toFixed(2) %>KB</p>
+    <p><strong>Size:</strong> <%= (file.size / 1024 / 1024).toFixed(2) %>MB</p>
     <div>
         <form action="/delete/file/<%= file.id %>" method="POST" class="invisibleForm">
             <button class="deleteBtn" type="submit">✖ Delete</button>

@@ -7,6 +7,8 @@ const setUserLocals = async (req, res, next) => {
 	res.locals.isAuthenticated = req.isAuthenticated();
 	res.locals.folders = null;
 	res.locals.files = null;
+	res.locals.maxUse = null;
+	res.locals.currentUse = null;
 	res.locals.formatDate = formatDate;
 
 	if (req.isAuthenticated()) {
@@ -22,6 +24,8 @@ const setUserLocals = async (req, res, next) => {
 
 		res.locals.folders = user.folders;
 		res.locals.files = user.files;
+		res.locals.maxUse = user.maxUse;
+		res.locals.currentUse = user.currentUse;
 	}
 
 	next();

@@ -147,6 +147,11 @@ form > div {
 	margin-top: 8px;
 }
 
+.usage {
+	margin-left: 4px;
+	margin-bottom: 16px;
+}
+
 @media (max-width: 650px) {
 	.files,
 	.upload {

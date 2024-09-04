@@ -1,6 +1,7 @@
 const path = require('node:path');
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
+const { updateUserCapacity, userHasSpace } = require('../misc/userCapacity');
 
 const POST_upload = async (req, res) => {
 	// check if user is authenticated
@@ -27,6 +28,18 @@ const POST_upload = async (req, res) => {
 		return res.redirect('/');
 	}
 
+	// Check if user has space
+	const hasSpace = await userHasSpace(file.size, req.user.id);
+	if (!hasSpace) {
+		console.log(
+			`Attempt to upload file failed, user ID(${req.user.id}) has no space`
+		);
+
+		return res.redirect(
+			`/error?errors=${encodeURIComponent('User has no space')}`
+		);
+	}
+
 	// Add entry to DB
 	if (req.isAuthenticated()) {
 		try {
@@ -48,6 +61,7 @@ const POST_upload = async (req, res) => {
 				},
 			});
 			console.log('File uploaded and entry added to DB:\n', addedFile);
+			await updateUserCapacity(req.user.id);
 			return res.redirect('/');
 		} catch (error) {
 			console.error('Error updating DB with new File: ', error);
