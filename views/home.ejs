@@ -207,7 +207,7 @@
 					const expectedTotal = file.size + currentUse;
 					
 					if(expectedTotal > maxUse) {
-						fileInput.setCustomValidity('Not enough space');
+						fileInput.setCustomValidity('Not enough space (10MB limit)');
 						fileInput.reportValidity();
 						event.preventDefault();
 						return;
