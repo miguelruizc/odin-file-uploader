@@ -212,6 +212,10 @@
 						event.preventDefault();
 						return;
 					} 
+
+					// Disable submit button until the server reponds
+					const submitButton = document.querySelector('#uploadFileForm .submitBtn');
+					submitButton.disabled = true;
 				}
 			});
 			// Reset custom error message (upload form)
